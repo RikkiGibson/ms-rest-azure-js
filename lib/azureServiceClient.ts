@@ -131,8 +131,8 @@ export class AzureServiceClient extends msRest.ServiceClient {
     const initialRequestMethod: string = resultOfInitialRequest.request.method as msRest.HttpMethods;
 
     if (self.checkResponseStatusCodeFailed(resultOfInitialRequest)) {
-      return Promise.reject(`Unexpected polling status code from long running operation ` +
-        `"${resultOfInitialRequest.status}" for method "${initialRequestMethod}".`);
+      return Promise.reject(new Error(`Unexpected polling status code from long running operation ` +
+        `"${resultOfInitialRequest.status}" for method "${initialRequestMethod}".`));
     }
     let pollingState: PollingState;
     try {
